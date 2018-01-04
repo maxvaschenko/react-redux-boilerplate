@@ -1,25 +1,21 @@
 import {createReducer} from "../utils/index";
-import {
-    GET_URL,
-} from "../type/app";
+import * as types from "../type/app";
 
 const initialState = {
-    loading: true,
-    error: null,
-    url: ''
+    showSideBar: false,
 };
-
-const GET = (state, payload) => {
-    return {
-        ...state,
-        loading: false,
-        url: payload
-    };
-};
-
-
-
 
 export default createReducer(initialState, {
-    [GET_URL]:GET,
+    [types.SHOW_SIDEBAR]: (state) => {
+        return {
+            ...state,
+            showSideBar: true
+        };
+    },
+    [types.HIDE_SIDEBAR]: (state) => {
+        return {
+            ...state,
+            showSideBar: false
+        };
+    },
 });

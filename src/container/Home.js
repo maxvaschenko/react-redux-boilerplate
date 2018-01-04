@@ -1,15 +1,15 @@
 import React, {Component} from "react";
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import { Redirect } from 'react-router';
+import { BrowserRouter as  Router, Link, Switch} from 'react-router-dom';
+import { Route, Redirect } from 'react-router';
 import {connect} from "react-redux";
-import {$url} from "../redux/action/app";
-import createBrowserHistory from 'history/createBrowserHistory'
-import {__Home__} from "./styled";
+import {$showSidebar, $hideSidebar} from "../redux/action/app";
+import createBrowserHistory from 'history/createBrowserHistory';
+import {__Home__, __Sidebar__} from "./styled";
 import DummyChart from "../components/tabs/dummyChart";
 import DummyList from "../components/tabs/dummyList";
 import DummyTable from "../components/tabs/dummyTable";
 
-const history = createBrowserHistory()
+const history = createBrowserHistory();
 
 const data =
     [
@@ -20,16 +20,11 @@ const data =
 
 
 @connect(state => state,{
-    $url
+    $showSidebar,
+    $hideSidebar
 })
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            url: ''
-        }
-    }
 
     render() {
         const routes = [
@@ -44,38 +39,64 @@ class Home extends Component {
                 main: <DummyList/>
             }
         ];
-        console.log(this.state);
+        const comparedArr = data.sort((a, b) => {
+            if(a.order > b.order) return 1;
+            if(a.order < b.order) return -1;
+            if(a.order = b.order) return 0;
+        });
+        const shouldRedirect = location.pathname === '/';
         return (
-            <Router history={history}>
+            <Router>
                 <__Home__>
-                    <ul>
-                        {data.map(i => (
-                            <li key={i.id}>
-                                <Link
-                                    to={`/${i.id}`}
-                                    onClick={e => this.props.$url(i.id)}
-                                >
-                                    <span>{i.order}</span>{i.title}</Link>
-                            </li>
-                        ))}
-                    </ul>
 
-                    {data.map((i, index) => {
-                        const component = routes.filter((item => item.path === i.path))[0].main;
-                            return (
-                            <Route
-                                key={index}
-                                path={`/${i.id}`}
-                                render={() => (
-                                    component ?
-                                    component :
-                                    <Redirect to={this.props.app.url}/>
-                                )}
-                                refresh={true}
-                            />
-                        )
+
+                    {!this.props.app.showSideBar && <div
+                        className="bars"
+                        onClick={this.props.$showSidebar}
+                    >
+                        <i className="fa fa-bars" aria-hidden="true"/>
+                    </div>}
+
+                    {this.props.app.showSideBar &&
+                        <__Sidebar__>
+                            <div
+                                className="times"
+                                onClick={this.props.$hideSidebar}
+                            >
+                                <i className="fa fa-times" aria-hidden="true"/>
+                            </div>
+                            <ul>
+                                {comparedArr.map(i => (
+                                    <li key={i.id}>
+                                        <Link
+                                            to={`/${i.id}`}
+                                        >
+                                            <span className="order">{i.order + 1}</span>
+                                            <span>{i.title}</span>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </__Sidebar__>
                     }
-                    )}
+
+                    <Switch>
+                        {data.map((i, index) => {
+                                const component = routes.filter((item => item.path === i.path))[0].main;
+                                return (
+                                    <Route
+                                        key={index}
+                                        path={`/${i.id}`}
+                                        render={() => component}
+                                    />
+                                )
+                            }
+                        )}
+                        {shouldRedirect && <Redirect to={`/${comparedArr[0].id}`}/>}
+                    </Switch>
+
+
+
 
                 </__Home__>
             </Router>

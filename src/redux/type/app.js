@@ -1,1 +1,2 @@
-export const GET_URL = '@app/GET_URL';
+export const SHOW_SIDEBAR = '@app/SHOW_SIDEBAR';
+export const HIDE_SIDEBAR = '@app/HIDE_SIDEBAR';
