@@ -1,21 +1,25 @@
 import {createReducer} from "../utils/index";
 import {
-    START_APP,
+    GET_URL,
 } from "../type/app";
 
 const initialState = {
     loading: true,
-    error: null
+    error: null,
+    url: ''
 };
 
-const START = (state, payload) => {
+const GET = (state, payload) => {
     return {
         ...state,
         loading: false,
+        url: payload
     };
 };
 
 
+
+
 export default createReducer(initialState, {
-    [START_APP]:START,
+    [GET_URL]:GET,
 });

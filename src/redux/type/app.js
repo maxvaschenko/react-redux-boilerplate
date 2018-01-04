@@ -1,1 +1,1 @@
-export const START_APP = '@app/START_APP';
+export const GET_URL = '@app/GET_URL';

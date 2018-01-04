@@ -1,13 +1,14 @@
-import {START_APP} from "../type/app";
+import {GET_URL} from "../type/app";
 
-export function startApp() {
+export const $url= (url) => {
     return async (dispatch) => {
         try{
             await dispatch({
-                type: START_APP,
+                type: GET_URL,
+                payload: url
             })
         } catch (e){
-            //ignore
+            console.log(e)
         }
     }
 }
