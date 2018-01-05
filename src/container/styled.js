@@ -22,6 +22,8 @@ export const __Sidebar__ = styled.div`
     width: 20%;
     height: 100vh;
     background-color: #222b37;
+    
+    
     i {
       position: relative;
       left: 92%;
@@ -40,6 +42,7 @@ export const __Sidebar__ = styled.div`
           cursor: pointer;
         }
         a {
+          display: block;
           padding-left: 5px;
           text-decoration: none;
           color: white;
@@ -50,4 +53,9 @@ export const __Sidebar__ = styled.div`
         }
       }
     }
+`;
+
+export const __Content__ = styled.div`
+   width: 100%;
+   padding: 20px 0 0 20px;
 `;

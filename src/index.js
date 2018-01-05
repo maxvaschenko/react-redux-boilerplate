@@ -6,6 +6,7 @@ import {devTools} from "./redux/utils";
 import configureStore from "./redux/store";
 import App from "./App";
 
+
 const Root = props => (
     <Provider store={props.store}>
         <App/>

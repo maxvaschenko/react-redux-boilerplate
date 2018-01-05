@@ -18,4 +18,10 @@ export default createReducer(initialState, {
             showSideBar: false
         };
     },
+    [types.INIT_APP]: (state, payload) => {
+        return {
+            ...state,
+            showSideBar: payload.showSideBar
+        };
+    },
 });

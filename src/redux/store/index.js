@@ -8,6 +8,9 @@ import {applyMiddleware, compose, createStore} from "redux";
 import thunk from "redux-thunk";
 import {createLogger} from "redux-logger";
 import rootReducer from "../reducer/index";
+import {saveState} from "../utils";
+
+
 
 function configureStore(initialState) {
     let createStoreWithMiddleware;
@@ -29,6 +32,10 @@ function configureStore(initialState) {
                 store.replaceReducer(nextRootReducer);
             });
     }
+
+    store.subscribe(() => {
+        saveState(store.getState().app)
+    });
 
     return store;
 }

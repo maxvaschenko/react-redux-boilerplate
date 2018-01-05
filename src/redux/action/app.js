@@ -1,4 +1,5 @@
-import { SHOW_SIDEBAR, HIDE_SIDEBAR } from "../type/app";
+import { SHOW_SIDEBAR, HIDE_SIDEBAR, INIT_APP } from "../type/app";
+import {loadState} from "../utils";
 
 export const $showSidebar= () => {
     return async (dispatch) => {
@@ -22,4 +23,18 @@ export const $hideSidebar= () => {
             console.log(e)
         }
     }
-}
+};
+
+export const $initApp = () => {
+    let persistedState = loadState();
+    return async (dispatch) => {
+        try{
+            await dispatch({
+                type: INIT_APP,
+                payload: persistedState
+            })
+        } catch (e){
+            console.log(e)
+        }
+    }
+};
