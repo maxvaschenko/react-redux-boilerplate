@@ -4,9 +4,8 @@ import { Route, Redirect } from 'react-router';
 import {connect} from "react-redux";
 import {$showSidebar, $hideSidebar, $initApp} from "../redux/action/app";
 import {__Home__, __Sidebar__, __Content__} from "./styled";
-import DummyChart from "../components/tabs/dummyChart";
-import DummyList from "../components/tabs/dummyList";
-import DummyTable from "../components/tabs/dummyTable";
+import componentLoader from "../components/componentLoader";
+
 
 
 const data =
@@ -30,27 +29,19 @@ class Home extends Component {
     }
 
     render() {
-        const routes = [
-            {
-                path: 'tabs/dummyTable.js',
-                exact: true,
-                main: <DummyTable/>
-            },
-            {
-                path: 'tabs/dummyChart.js',
-                main: <DummyChart/>
-            },
-            {
-                path: 'tabs/dummyList.js',
-                main: <DummyList/>
-            }
-        ];
+
         const comparedArr = data.slice().sort((a, b) => {
             if (a.order > b.order) return 1;
             if (a.order < b.order) return -1;
             if (a.order = b.order) return 0;
         });
-        const shouldRedirect = location.pathname === '/';
+
+        let FirstComponent = null;
+
+        if (comparedArr.length > 0) {
+            FirstComponent = componentLoader(() => import('../components/' + comparedArr[0].path)
+                .then(module => module.default).catch(e => console.log(e)), {});
+        }
         return (
             <Router>
                 <__Home__>
@@ -84,18 +75,22 @@ class Home extends Component {
                     }
                     <__Content__>
                         <Switch>
-                            {data.map((i, index) => {
-                                    const component = routes.filter((item => item.path === i.path))[0].main;
+                            {data.map((i) => {
+                                    const component = componentLoader(() => import('../components/' + i.path)
+                                        .then(module => module.default).catch(e => console.log(e)), {});
                                     return (
                                         <Route
-                                            key={index}
+                                            key={i.id}
                                             path={`/${i.id}`}
-                                            render={() => component}
+                                            component={component}
                                         />
                                     )
                                 }
                             )}
-                            {shouldRedirect && <Redirect to={`/${comparedArr[0].id}`}/>}
+                            {FirstComponent && <Route exact path="/" component={FirstComponent}/>}
+                            <Route path="*" render={() => (
+                                <div><h1>404 Not found!</h1></div>
+                            )}/>
                         </Switch>
                     </__Content__>
                 </__Home__>

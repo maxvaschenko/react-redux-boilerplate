@@ -38,3 +38,17 @@ export const $initApp = () => {
         }
     }
 };
+
+export const $selectComponent = () => {
+    let persistedState = loadState();
+    return async (dispatch) => {
+        try{
+            await dispatch({
+                type: INIT_APP,
+                payload: persistedState
+            })
+        } catch (e){
+            console.log(e)
+        }
+    }
+};
