@@ -18,10 +18,8 @@ export default (loader) => (
 
         render() {
             return (
-                this.state.Component ?
-                    <this.state.Component { ...this.props } /> :
-                    <h1> Coming Soon </h1>
-            );
+                this.state.Component && <this.state.Component { ...this.props } />
+            )
         }
     }
 );

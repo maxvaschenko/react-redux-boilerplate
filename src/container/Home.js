@@ -1,70 +1,46 @@
 import React, {Component} from "react";
 import { BrowserRouter as  Router, Link, Switch} from 'react-router-dom';
-import { Route, Redirect } from 'react-router';
+import { Route } from 'react-router';
 import {connect} from "react-redux";
-import {$showSidebar, $hideSidebar, $initApp} from "../redux/action/app";
+import {$showSidebar, $hideSidebar, $initApp, $getData} from "../redux/action/app";
 import {__Home__, __Sidebar__, __Content__} from "./styled";
 import componentLoader from "../components/componentLoader";
-
-
-
-const data =
-    [
-        {id: 'dummyTable', title: 'Dummy Table', order: 1, path: 'tabs/dummyTable.js'},
-        {id: 'dummyChart', title: 'Dummy Chart', order: 2, path: 'tabs/dummyChart.js'},
-        {id: 'dummyList', title: 'Dummy List', order: 0, path: 'tabs/dummyList.js'}
-    ];
 
 
 @connect(state => state,{
     $showSidebar,
     $hideSidebar,
-    $initApp
+    $initApp,
+    $getData
 })
 
 class Home extends Component {
 
-    componentWillMount(){
-        this.props.$initApp()
-    }
-
     render() {
-
-        const comparedArr = data.slice().sort((a, b) => {
-            if (a.order > b.order) return 1;
-            if (a.order < b.order) return -1;
-            if (a.order = b.order) return 0;
-        });
-
-        let FirstComponent = null;
-
-        if (comparedArr.length > 0) {
-            FirstComponent = componentLoader(() => import('../components/' + comparedArr[0].path)
-                .then(module => module.default).catch(e => console.log(e)), {});
-        }
+        const shouldRedirect = location.pathname === '/';
         return (
             <Router>
                 <__Home__>
                     {this.props.app.showSideBar ?
                         <__Sidebar__>
                             <div
-                            className="times"
-                            onClick={this.props.$hideSidebar}
-                        >
-                            <i className="fa fa-times" aria-hidden="true"/>
-                        </div>
+                                className="times"
+                                onClick={this.props.$hideSidebar}
+                            >
+                                <i className="fa fa-times" aria-hidden="true"/>
+                            </div>
                             <ul>
-                            {comparedArr.map(i => (
-                                <li key={i.id}>
-                                    <Link
-                                        to={`/${i.id}`}
-                                    >
-                                        <span className="order">{i.order + 1}</span>
-                                        <span>{i.title}</span>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                                {this.props.app.data && this.props.app.data.map(i => (
+                                    <li key={i.id}>
+                                        <Link
+                                            to={`/${i.id}`}
+                                        >
+                                            <span className="order">{i.order + 1}</span>
+                                            <span>{i.title}</span>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
                         </__Sidebar__> :
                         <div
                             className="bars"
@@ -75,7 +51,7 @@ class Home extends Component {
                     }
                     <__Content__>
                         <Switch>
-                            {data.map((i) => {
+                            {this.props.app.data && this.props.app.data.map((i) => {
                                     const component = componentLoader(() => import('../components/' + i.path)
                                         .then(module => module.default).catch(e => console.log(e)), {});
                                     return (
@@ -87,10 +63,13 @@ class Home extends Component {
                                     )
                                 }
                             )}
-                            {FirstComponent && <Route exact path="/" component={FirstComponent}/>}
-                            <Route path="*" render={() => (
+                            {this.props.app.data && shouldRedirect && <Route exact path="/"
+                                                                             component={componentLoader(() => import('../components/' + this.props.app.data[0].path)
+                                                                                 .then(module => module.default).catch(e => console.log(e)), {})}
+                            />}
+                            {this.props.app.data && <Route path="*" render={() => (
                                 <div><h1>404 Not found!</h1></div>
-                            )}/>
+                            )}/>}
                         </Switch>
                     </__Content__>
                 </__Home__>
