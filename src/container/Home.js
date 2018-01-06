@@ -1,13 +1,13 @@
 import React, {Component} from "react";
-import { BrowserRouter as  Router, Link, Switch} from 'react-router-dom';
-import { Route } from 'react-router';
+import {BrowserRouter as  Router, Link, Switch} from 'react-router-dom';
+import {Route} from 'react-router';
 import {connect} from "react-redux";
 import {$showSidebar, $hideSidebar, $initApp, $getData} from "../redux/action/app";
 import {__Home__, __Sidebar__, __Content__} from "./styled";
 import componentLoader from "../components/componentLoader";
 
 
-@connect(state => state,{
+@connect(state => state, {
     $showSidebar,
     $hideSidebar,
     $initApp,

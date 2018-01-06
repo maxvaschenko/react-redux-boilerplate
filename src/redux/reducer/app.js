@@ -6,7 +6,6 @@ const initialState = {
     error: null,
     showSideBar: false,
     data: null,
-    firstComponent: null,
 };
 
 export default createReducer(initialState, {
