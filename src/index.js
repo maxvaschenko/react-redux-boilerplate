@@ -2,8 +2,8 @@ import "./global";
 import React from 'react';
 import {render} from "react-dom";
 import {Provider} from "react-redux";
-import {devTools} from "./redux/utils";
-import configureStore from "./redux/store";
+import {devTools} from "./utils";
+import configureStore from "./store";
 import App from "./App";
 
 const Root = props => (

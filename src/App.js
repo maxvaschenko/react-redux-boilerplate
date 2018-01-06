@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {startApp} from "./redux/action/app";
+import {startApp} from "./action/app";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Home from "./container/Home";
 
