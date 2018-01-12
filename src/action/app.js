@@ -1,6 +1,6 @@
-import {START_APP} from "../type/app";
+import {START_APP} from "../type/index";
 
-export function startApp() {
+export function $startApp() {
     return async (dispatch) => {
         try{
             await dispatch({
