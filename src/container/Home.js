@@ -1,15 +1,19 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {$likeAlbum, $unLikeAlbum} from "../action/albums";
+import {$showNotification, $hideNotification} from "../action/notification";
 
 import {__Home__} from "./styled";
 import AlbumListItem from '../components/AlbumListItem';
 import Like from "../components/Like/index";
 import Header from "../components/Header/index";
+import {Notification} from "../components/Notification";
 
 @connect(state => state,{
     $likeAlbum,
     $unLikeAlbum,
+    $showNotification,
+    $hideNotification
 })
 
 class Home extends Component {
@@ -38,6 +42,7 @@ class Home extends Component {
                         )
                     })}
                 </div>
+
             </__Home__>
         )
     }

@@ -8,7 +8,7 @@ import {applyMiddleware, compose, createStore} from "redux";
 import thunk from "redux-thunk";
 import {createLogger} from "redux-logger";
 import rootReducer from "../reducer/index";
-import {saveState} from "../utils";
+import {loadState, saveState} from "../utils";
 import throttle from 'lodash/throttle';
 
 function configureStore(initialState) {
@@ -22,7 +22,7 @@ function configureStore(initialState) {
         middleware,
     );
 
-    const store = createStoreWithMiddleware(createStore)(rootReducer, initialState);
+    const store = createStoreWithMiddleware(createStore, loadState())(rootReducer, initialState);
 
     if (module.hot) {
         module.hot
@@ -33,9 +33,9 @@ function configureStore(initialState) {
     }
 
 
-    store.subscribe(throttle(() => {
+    store.subscribe(() => {
         saveState(store.getState().albums)
-    }));
+    });
 
     return store;
 }
