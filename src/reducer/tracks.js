@@ -3,11 +3,11 @@ import {
     GET_TRACKLIST,
     GET_TRACKLIST_ERROR
 } from "../type/index";
-import {LIKE_TRACK} from "../type";
+import {LIKE_TRACK, UNLIKE_TRACK} from "../type";
 
 const initialState = {
     data: null,
-    liked: [],
+    likedItems: [],
     error: false
 };
 
@@ -25,12 +25,20 @@ export default createReducer(initialState, {
         };
     },
     [LIKE_TRACK]: (state, payload) => {
-        console.log('payload', payload);
         return {
             ...state,
-            liked: [
-                ...state.liked,
+            likedItems: [
+                ...state.likedItems,
                 payload
+            ]
+        };
+    },
+    [UNLIKE_TRACK]: (state, payload) => {
+        const likedItems = state.likedItems.filter(item => item!==payload);
+        return {
+            ...state,
+            likedItems: [
+                ...likedItems
             ]
         };
     }

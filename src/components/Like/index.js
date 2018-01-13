@@ -5,7 +5,8 @@ import {__Like__} from "./styled";
 const Like = (props) => {
     return (
         <__Like__
-            onClick={props.onClick}
+            onClick={props.liked ? props.unLike : props.like}
+            liked={props.liked}
         >
             <i className="fa fa-thumbs-up" aria-hidden="true"/>
         </__Like__>

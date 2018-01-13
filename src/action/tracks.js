@@ -1,4 +1,4 @@
-import {GET_TRACKLIST, GET_TRACKLIST_ERROR, LIKE_TRACK} from "../type/index";
+import {GET_TRACKLIST, GET_TRACKLIST_ERROR, LIKE_TRACK, UNLIKE_TRACK} from "../type/index";
 
 export const $getTracklist = () => {
     return (dispatch) => {
@@ -30,13 +30,25 @@ export const $getTracklist = () => {
 export function $likeTrack(id) {
     return async (dispatch) => {
         try{
-            console.log(id);
             await dispatch({
                 type: LIKE_TRACK,
                 payload: id
             })
         } catch (e){
 
+        }
+    }
+}
+
+export function $unLikeTrack(id) {
+    return async (dispatch) => {
+        try{
+            await dispatch({
+                type: UNLIKE_TRACK,
+                payload: id
+            })
+        } catch (e){
+            console.log(e)
         }
     }
 }
