@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import Slider from 'react-rangeslider'
-import {Notification} from '../../components/Notification'
+import Notification from '../../components/Notification'
 import {$showNotification, $hideNotification} from '../../action/notification'
 
 import {__Donate__} from "./styled";
@@ -10,7 +10,7 @@ import {__Donate__} from "./styled";
     $showNotification,
     $hideNotification
 })
-//TODO refactor coming soon
+
 class Donate extends Component {
     constructor (props, context) {
         super(props, context);
@@ -64,7 +64,7 @@ class Donate extends Component {
                         <button
                             type="button"
                             className="btn btn-success"
-                            onClick={e => this.props.$showNotification('Thank you')}
+                            onClick={e => this.props.$showNotification('Thank you', 1000, 'success')}
                         >Give Now
                         </button>
                     </div>
@@ -74,22 +74,17 @@ class Donate extends Component {
                    <button
                        type="button"
                        className="additional-buttons-item"
-                       onClick={e => this.props.$showNotification('Coming soon...')}
+                       onClick={e => this.props.$showNotification('Coming soon...', 1000)}
                    >Save for later
                    </button>
                    <button
                        type="button"
                        className="additional-buttons-item"
-                       onClick={e => this.props.$showNotification('Coming soon...')}
+                       onClick={e => this.props.$showNotification('Coming soon...', 1000)}
                    >Tell your friends
                    </button>
                </div>
-                <Notification
-                    hideNotificationAction={this.props.$hideNotification}
-                    message={this.props.notification.message}
-
-                />
-
+                <Notification/>
             </__Donate__>
         )
     }

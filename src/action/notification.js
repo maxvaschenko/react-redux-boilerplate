@@ -5,12 +5,16 @@ import * as types from '../type';
 //     payload: payload
 // });
 
-export function $showNotification(payload) {
+export function $showNotification(message, time, type) {
     return async (dispatch) => {
         try {
             await dispatch({
                 type: types.SHOW_NOTIFICATION,
-                payload: payload
+                payload: {
+                    message,
+                    type,
+                    time
+                }
             })
         } catch (e) {
             //ignore

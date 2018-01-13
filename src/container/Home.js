@@ -12,8 +12,6 @@ import {Notification} from "../components/Notification";
 @connect(state => state,{
     $likeAlbum,
     $unLikeAlbum,
-    $showNotification,
-    $hideNotification
 })
 
 class Home extends Component {

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const __Notification__ = styled.div`
-  background-color: #63b566;
+  background-color: ${props => props.backgroundColor};
   padding: 20px;
   color: white;
   opacity: 0.83;
