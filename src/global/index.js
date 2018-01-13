@@ -43,4 +43,13 @@ injectGlobal`
         text-rendering: optimizeLegibility;
         -moz-osx-font-smoothing: grayscale;
     }
+    p{
+      margin: 0;
+      padding: 0;
+    }
+    button{
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
 `;
