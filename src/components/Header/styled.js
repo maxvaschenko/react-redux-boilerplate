@@ -16,13 +16,19 @@ const __Header__ = styled.div`
     margin: 0 auto;
     justify-content: space-between;
     align-items: center;
-    .donate{
-      display: flex;
-      align-items: center;
-      p{
-        margin-right: 6px;
+    p{}
+    a{
+      text-decoration: none;
+      color: #606c76;
+      .donate{
+        display: flex;
+        align-items: center;
+          p{
+            margin-right: 6px;
+          }
       }
     }
+    
   }
 `;
 

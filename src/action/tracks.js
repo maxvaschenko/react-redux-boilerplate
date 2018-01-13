@@ -1,4 +1,5 @@
-import {GET_TRACKLIST, GET_TRACKLIST_ERROR, LIKE_TRACK, UNLIKE_TRACK} from "../type/index";
+import {GET_TRACKLIST, GET_TRACKLIST_ERROR, LIKE_TRACK, UNLIKE_TRACK, GET_LIKED_TRACKS} from "../type/index";
+import {loadState} from "../utils";
 
 export const $getTracklist = () => {
     return (dispatch) => {
@@ -48,6 +49,21 @@ export function $unLikeTrack(id) {
                 payload: id
             })
         } catch (e){
+            console.log(e)
+        }
+    }
+}
+
+export function $getLikedTracks() {
+    const likedTracksList = loadState()
+    console.log('likedTracksList', likedTracksList);
+    return async (dispatch) => {
+        try {
+            await dispatch({
+                type: GET_LIKED_TRACKS,
+                payload: likedTracksList
+            })
+        } catch (e) {
             console.log(e)
         }
     }

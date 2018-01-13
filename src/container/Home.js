@@ -14,8 +14,6 @@ import Header from "../components/Header/index";
 
 class Home extends Component {
 
-
-
     render() {
         const {tracks, app, modal} = this.props;
         return (
