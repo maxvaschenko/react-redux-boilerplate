@@ -1,10 +1,37 @@
 import styled from 'styled-components';
 //TODO style code refactoring
 const __Donate__ = styled.div`
+  .still-needed{
+    width: 350px;
+    margin: 20px auto 0;
+    background-color: #191212c4;
+    border-radius: 4px;
+    p{
+      padding-top: 10px;
+      text-align: center;
+      font: 15px 'Helvetica Neue';
+      color: white;
+      .bold{
+        font-weight: 600;
+      }
+    }
+    .triangle{
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 10px solid #191212c4;
+        position: relative;
+        top: 10px;
+        left: 91%;
+      }
+    }
+    
+  }
   .donate-form{
     width: 350px;
     height: 250px;
-    margin: 20px auto;
+    margin: 15px auto;
     box-shadow: 0px 0px 12px 1px rgba(184,185,186,1);
     .slider{
       width: 100%;

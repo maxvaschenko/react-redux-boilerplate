@@ -10,8 +10,7 @@ import {__Donate__} from "./styled";
     $showNotification,
     $hideNotification
 })
-//TODO add coming soon to additional buttons
-//TODO still needed for project
+//TODO refactor coming soon
 class Donate extends Component {
     constructor (props, context) {
         super(props, context);
@@ -35,15 +34,21 @@ class Donate extends Component {
     render() {
         return (
             <__Donate__>
+                <div className="still-needed">
+                    {this.state.donateValue !== 1000 ?
+                        <p><span className="bold">${1000 - this.state.donateValue}</span> Still needed for this project
+                        </p> :
+                        <p>You are very very cool!!!</p>
+                    }
+                    <div className="triangle"/>
+                </div>
                 <div className="donate-form">
                     <div className='slider'>
                         <Slider
                             min={0}
                             max={1000}
                             value={this.state.donateValue}
-                            onChangeStart={this.handleChangeStart}
                             onChange={this.handleChange}
-                            onChangeComplete={this.handleChangeComplete}
                         />
                     </div>
                     <p className="title"><span className="picked">Only 3 days left</span>to fund this project</p>
