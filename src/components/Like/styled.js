@@ -18,7 +18,7 @@ const __Like__ = styled.div`
   }
     width: max-content;
     position: absolute;
-    top: 173px;
+    top: 184px;
     left: 135px;
 `;
 

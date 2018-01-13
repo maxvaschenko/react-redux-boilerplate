@@ -14,6 +14,8 @@ const Like = (props) => {
 };
 
 
-//TODO PropTypes
+Like.propTypes = {
+    liked: PropTypes.bool
+};
 
 export default Like;

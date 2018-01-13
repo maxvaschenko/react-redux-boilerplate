@@ -20,6 +20,4 @@ const Header = (props) => {
 };
 
 
-//TODO PropTypes
-
 export default Header;

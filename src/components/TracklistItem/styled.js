@@ -4,10 +4,7 @@ const __TracklistItem__ = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 170px;
-  img{
-    
-  }
-  a{
+  p{
     width: 85%;
     padding-top: 10px;
     font: 13px 'Helvetica Neue';

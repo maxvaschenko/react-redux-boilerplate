@@ -8,6 +8,7 @@ import {__Donate__} from "./styled";
 
 })
 //TODO add coming soon to additional buttons
+//TODO still needed for project
 class Donate extends Component {
     constructor (props, context) {
         super(props, context);

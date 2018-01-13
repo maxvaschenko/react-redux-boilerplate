@@ -5,11 +5,10 @@ import {__TracklistItem__} from "./styled";
 const TracklistItem = (props) => {
     return (
         <__TracklistItem__>
-
-                <img src={props.cover}/>
             <a href={props.link} target="_blank">
-                <p>{props.singerName}</p>
+                <img src={props.cover}/>
             </a>
+            <p>{props.singerName}</p>
         </__TracklistItem__>
     )
 };
