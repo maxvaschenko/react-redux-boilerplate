@@ -1,9 +1,12 @@
 import {createReducer} from "../utils/index";
 import * as types from "../type/index";
+import {loadState} from "../utils";
+
+const initialLikes = loadState();
 
 const initialState = {
     data: null,
-    likedItems: [],
+    likedItems: [...initialLikes],
     error: false
 };
 
@@ -29,15 +32,6 @@ export default createReducer(initialState, {
             ]
         };
     },
-    // [GET_LIKED_TRACKS]: (state, payload) => {
-    //     console.log('payload', payload);
-    //     return {
-    //         ...state,
-    //         likedItems: [
-    //             ...payload
-    //         ]
-    //     };
-    // },
     [types.UNLIKE_ALBUM]: (state, payload) => {
         const likedItems = state.likedItems.filter(item => item!==payload);
         return {

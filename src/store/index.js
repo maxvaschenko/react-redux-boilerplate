@@ -34,7 +34,7 @@ function configureStore(initialState) {
 
 
     store.subscribe(() => {
-        saveState(store.getState().albums)
+        saveState(store.getState().albums.likedItems)
     });
 
     return store;

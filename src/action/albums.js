@@ -1,5 +1,4 @@
 import * as types from "../type/index";
-import {loadState} from "../utils";
 
 export const $getAlbumslist = () => {
     return (dispatch) => {
@@ -49,20 +48,6 @@ export function $unLikeAlbum(id) {
                 payload: id
             })
         } catch (e){
-            console.log(e)
-        }
-    }
-}
-
-export function $getLikedAlbums() {
-    const likedAlbumsList = loadState();
-    return async (dispatch) => {
-        try {
-            await dispatch({
-                type: types.GET_LIKED_ALBUMS,
-                payload: likedAlbumsList
-            })
-        } catch (e) {
             console.log(e)
         }
     }
