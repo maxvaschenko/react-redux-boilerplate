@@ -1,38 +1,38 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {$likeTrack, $unLikeTrack} from "../action/tracks";
+import {$likeAlbum, $unLikeAlbum} from "../action/albums";
 
 import {__Home__} from "./styled";
-import TracklistItem from '../components/TracklistItem/index';
+import AlbumListItem from '../components/AlbumListItem';
 import Like from "../components/Like/index";
 import Header from "../components/Header/index";
 
 @connect(state => state,{
-    $likeTrack,
-    $unLikeTrack,
+    $likeAlbum,
+    $unLikeAlbum,
 })
 
 class Home extends Component {
 
     render() {
-        const {tracks, app, modal} = this.props;
+        const {albums, app, modal} = this.props;
         return (
             <__Home__>
                 <Header/>
-                <div className="track-list-container">
-                    {tracks.data && tracks.data.map((item, index) => {
+                <div className="album-list-container">
+                    {albums.data && albums.data.map((item, index) => {
                         const id = item.id.attributes['im:id'];
                         return (
-                            <div className="track-list-item" key={index}>
-                                <TracklistItem
+                            <div className="album-list-item" key={index}>
+                                <AlbumListItem
                                     cover={item['im:image'][2].label}
                                     singerName={item['im:name'].label}
                                     link={item.link.attributes.href}
                                 />
                                 <Like
-                                    like={e => this.props.$likeTrack(id)}
-                                    unLike={e => this.props.$unLikeTrack(id)}
-                                    liked={!!tracks.likedItems.filter(item => item===id)[0]}
+                                    like={e => this.props.$likeAlbum(id)}
+                                    unLike={e => this.props.$unLikeAlbum(id)}
+                                    liked={!!albums.likedItems.filter(item => item === id)[0]}
                                 />
                             </div>
                         )

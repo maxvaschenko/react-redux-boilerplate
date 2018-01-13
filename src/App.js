@@ -1,18 +1,21 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {$startApp} from "./action/app";
-import {$getTracklist} from "./action/tracks";
+import {$getAlbumslist} from "./action/albums";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Home from "./container/Home";
 import Donate from "./container/Donate";
 
-@connect(state => state, {$startApp, $getTracklist})
+@connect(state => state, {
+    $startApp,
+    $getAlbumslist
+})
 
 class App extends Component {
 
     componentWillMount(){
         this.props.$startApp();
-        this.props.$getTracklist()
+        this.props.$getAlbumslist();
     }
 
     render() {

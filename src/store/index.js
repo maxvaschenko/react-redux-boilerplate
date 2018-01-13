@@ -8,6 +8,8 @@ import {applyMiddleware, compose, createStore} from "redux";
 import thunk from "redux-thunk";
 import {createLogger} from "redux-logger";
 import rootReducer from "../reducer/index";
+import {saveState} from "../utils";
+import throttle from 'lodash/throttle';
 
 function configureStore(initialState) {
     let createStoreWithMiddleware;
@@ -29,6 +31,11 @@ function configureStore(initialState) {
                 store.replaceReducer(nextRootReducer);
             });
     }
+
+
+    store.subscribe(throttle(() => {
+        saveState(store.getState().albums)
+    }));
 
     return store;
 }

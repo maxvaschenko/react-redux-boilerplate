@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const __TracklistItem__ = styled.div`
+const __AlbumListItem__ = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 170px;
@@ -13,4 +13,4 @@ const __TracklistItem__ = styled.div`
   }
 `;
 
-export {__TracklistItem__};
+export {__AlbumListItem__};

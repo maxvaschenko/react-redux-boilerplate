@@ -1,38 +1,38 @@
-import {GET_TRACKLIST, GET_TRACKLIST_ERROR, LIKE_TRACK, UNLIKE_TRACK, GET_LIKED_TRACKS} from "../type/index";
+import * as types from "../type/index";
 import {loadState} from "../utils";
 
-export const $getTracklist = () => {
+export const $getAlbumslist = () => {
     return (dispatch) => {
         try{
             fetch('https://itunes.apple.com/us/rss/topalbums/limit=100/json')
                 .then((response) => response.json())
                 .then((json) => {
                     dispatch({
-                        type: GET_TRACKLIST,
+                        type: types.GET_ALBUM_LIST,
                         payload: json
                     })
                 })
                 .catch((error) => {
                     console.log('parsing failed', error);
                     dispatch({
-                        type: GET_TRACKLIST_ERROR,
+                        type: types.GET_ALBUM_LIST_ERROR,
                     })
                 });
 
         } catch (e){
             console.log(e);
             dispatch({
-                type: GET_TRACKLIST_ERROR,
+                type: types.GET_ALBUM_LIST_ERROR,
             })
         }
     }
 };
 
-export function $likeTrack(id) {
+export function $likeAlbum(id) {
     return async (dispatch) => {
         try{
             await dispatch({
-                type: LIKE_TRACK,
+                type: types.LIKE_ALBUM,
                 payload: id
             })
         } catch (e){
@@ -41,11 +41,11 @@ export function $likeTrack(id) {
     }
 }
 
-export function $unLikeTrack(id) {
+export function $unLikeAlbum(id) {
     return async (dispatch) => {
         try{
             await dispatch({
-                type: UNLIKE_TRACK,
+                type: types.UNLIKE_ALBUM,
                 payload: id
             })
         } catch (e){
@@ -54,14 +54,13 @@ export function $unLikeTrack(id) {
     }
 }
 
-export function $getLikedTracks() {
-    const likedTracksList = loadState()
-    console.log('likedTracksList', likedTracksList);
+export function $getLikedAlbums() {
+    const likedAlbumsList = loadState();
     return async (dispatch) => {
         try {
             await dispatch({
-                type: GET_LIKED_TRACKS,
-                payload: likedTracksList
+                type: types.GET_LIKED_ALBUMS,
+                payload: likedAlbumsList
             })
         } catch (e) {
             console.log(e)

@@ -1,10 +1,10 @@
 import {combineReducers} from "redux";
 import app from "./app"
-import tracks from "./tracks"
+import albums from "./albums"
 
 const rootReducer = combineReducers({
     app,
-    tracks
+    albums
 });
 
 export default rootReducer;

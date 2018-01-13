@@ -1,9 +1,5 @@
 import {createReducer} from "../utils/index";
-import {
-    GET_TRACKLIST,
-    GET_TRACKLIST_ERROR
-} from "../type/index";
-import {LIKE_TRACK, UNLIKE_TRACK} from "../type";
+import * as types from "../type/index";
 
 const initialState = {
     data: null,
@@ -12,19 +8,19 @@ const initialState = {
 };
 
 export default createReducer(initialState, {
-    [GET_TRACKLIST]: (state, payload) => {
+    [types.GET_ALBUM_LIST]: (state, payload) => {
         return {
             ...state,
             data: payload.feed.entry
         };
     },
-    [GET_TRACKLIST_ERROR]: (state) => {
+    [types.GET_ALBUM_LIST_ERROR]: (state) => {
         return {
             ...state,
             error: true
         };
     },
-    [LIKE_TRACK]: (state, payload) => {
+    [types.LIKE_ALBUM]: (state, payload) => {
         return {
             ...state,
             likedItems: [
@@ -33,7 +29,16 @@ export default createReducer(initialState, {
             ]
         };
     },
-    [UNLIKE_TRACK]: (state, payload) => {
+    // [GET_LIKED_TRACKS]: (state, payload) => {
+    //     console.log('payload', payload);
+    //     return {
+    //         ...state,
+    //         likedItems: [
+    //             ...payload
+    //         ]
+    //     };
+    // },
+    [types.UNLIKE_ALBUM]: (state, payload) => {
         const likedItems = state.likedItems.filter(item => item!==payload);
         return {
             ...state,

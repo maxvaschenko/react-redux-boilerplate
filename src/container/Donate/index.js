@@ -23,20 +23,11 @@ class Donate extends Component {
         })
     };
 
-    handleChangeStart = () => {
-        console.log('Change event started')
-    };
-
     handleChange = value => {
         this.setState({
             donateValue: value
         })
     };
-
-    handleChangeComplete = () => {
-        console.log('Change event completed')
-    };
-
 
     render() {
         return (
