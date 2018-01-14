@@ -16,7 +16,6 @@ const __Header__ = styled.div`
     margin: 0 auto;
     justify-content: space-between;
     align-items: center;
-    p{}
     a{
       text-decoration: none;
       color: #606c76;

@@ -1,13 +1,12 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {$likeAlbum, $unLikeAlbum} from "../action/albums";
-import {$showNotification, $hideNotification} from "../action/notification";
 
 import {__Home__} from "./styled";
 import AlbumListItem from '../components/AlbumListItem';
 import Like from "../components/Like/index";
 import Header from "../components/Header/index";
-import {Notification} from "../components/Notification";
+
 
 @connect(state => state,{
     $likeAlbum,
@@ -17,7 +16,7 @@ import {Notification} from "../components/Notification";
 class Home extends Component {
 
     render() {
-        const {albums, app, modal} = this.props;
+        const {albums} = this.props;
         return (
             <__Home__>
                 <Header/>
@@ -32,15 +31,14 @@ class Home extends Component {
                                     link={item.link.attributes.href}
                                 />
                                 <Like
-                                    like={e => this.props.$likeAlbum(id)}
-                                    unLike={e => this.props.$unLikeAlbum(id)}
-                                    liked={!!albums.likedItems.filter(item => item === id)[0]}
+                                    like={() => this.props.$likeAlbum(id)}
+                                    unLike={() => this.props.$unLikeAlbum(id)}
+                                    liked={!!albums.likedItems.filter(item => item === id).length}
                                 />
                             </div>
                         )
                     })}
                 </div>
-
             </__Home__>
         )
     }

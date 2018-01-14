@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types';
 import {__Header__} from "./styled";
 
-const Header = (props) => {
+const Header = () => {
     return (
         <__Header__>
             <header>

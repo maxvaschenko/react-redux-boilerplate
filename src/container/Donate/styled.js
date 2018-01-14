@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-//TODO style code refactoring
 const __Donate__ = styled.div`
   .still-needed{
     width: 350px;
@@ -28,12 +27,11 @@ const __Donate__ = styled.div`
       }
     }
     
-  }
   .donate-form{
     width: 350px;
     height: 250px;
     margin: 15px auto;
-    box-shadow: 0px 0px 12px 1px rgba(184,185,186,1);
+    box-shadow: 0 0 12px 1px rgba(184,185,186,1);
     .slider{
       width: 100%;
     .rangeslider-horizontal{

@@ -8,7 +8,6 @@ const __AlbumListItem__ = styled.div`
     width: 85%;
     padding-top: 10px;
     font: 13px 'Helvetica Neue';
-    text-decoration: none;
     color: #606c76;
   }
 `;

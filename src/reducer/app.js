@@ -5,7 +5,6 @@ import {
 
 const initialState = {
     loading: true,
-    error: null
 };
 
 export default createReducer(initialState, {

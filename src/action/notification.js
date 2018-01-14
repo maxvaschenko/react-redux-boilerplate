@@ -1,9 +1,5 @@
 import * as types from '../type';
 
-// export const $showNotification = payload => ({
-//     type: types.SHOW_NOTIFICATION,
-//     payload: payload
-// });
 
 export function $showNotification(message, time, type) {
     return async (dispatch) => {
@@ -17,7 +13,7 @@ export function $showNotification(message, time, type) {
                 }
             })
         } catch (e) {
-            //ignore
+
         }
     }
 }

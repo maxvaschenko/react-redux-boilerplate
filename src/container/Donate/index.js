@@ -35,10 +35,11 @@ class Donate extends Component {
         return (
             <__Donate__>
                 <div className="still-needed">
-                    {this.state.donateValue !== 1000 ?
-                        <p><span className="bold">${1000 - this.state.donateValue}</span> Still needed for this project
-                        </p> :
-                        <p>You are very very cool!!!</p>
+                    {this.state.donateValue < 800 ?
+                        (this.state.donateValue <= 500 ?
+                            <p><span className="bold">${1000 - this.state.donateValue}</span> Still needed for this project</p>:
+                            <p>You are very very cool!</p>
+                        ): <p>God level Detected!!!</p>
                     }
                     <div className="triangle"/>
                 </div>
@@ -64,7 +65,7 @@ class Donate extends Component {
                         <button
                             type="button"
                             className="btn btn-success"
-                            onClick={e => this.props.$showNotification('Thank you', 1000, 'success')}
+                            onClick={e => this.props.$showNotification('Thank you', 1500, 'success')}
                         >Give Now
                         </button>
                     </div>
@@ -74,17 +75,17 @@ class Donate extends Component {
                    <button
                        type="button"
                        className="additional-buttons-item"
-                       onClick={e => this.props.$showNotification('Coming soon...', 1000)}
+                       onClick={e => this.props.$showNotification('Coming soon...', 1500)}
                    >Save for later
                    </button>
                    <button
                        type="button"
                        className="additional-buttons-item"
-                       onClick={e => this.props.$showNotification('Coming soon...', 1000)}
+                       onClick={e => this.props.$showNotification('Coming soon...', 1500)}
                    >Tell your friends
                    </button>
                </div>
-                <Notification/>
+               <Notification/>
             </__Donate__>
         )
     }

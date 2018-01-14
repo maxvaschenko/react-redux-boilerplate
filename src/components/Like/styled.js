@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 const __Like__ = styled.div`
+   width: max-content;
+   position: absolute;
+   top: 184px;
+   left: 135px;
   i{
     visibility: ${props => props.liked ? 'visible' : 'hidden'};
     color: ${props => props.liked ? '#fbff00' : 'white'};
@@ -16,10 +20,6 @@ const __Like__ = styled.div`
       cursor: pointer;
     }
   }
-    width: max-content;
-    position: absolute;
-    top: 184px;
-    left: 135px;
 `;
 
 export {__Like__};

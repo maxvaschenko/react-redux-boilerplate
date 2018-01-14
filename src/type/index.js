@@ -5,7 +5,6 @@ export const GET_ALBUM_LIST_ERROR = '@tracks/GET_ALBUM_LIST_ERROR';
 
 export const LIKE_ALBUM = '@tracks/LIKE_ALBUM';
 export const UNLIKE_ALBUM = '@tracks/UNLIKE_ALBUM';
-export const GET_LIKED_ALBUMS = '@tracks/GET_LIKED_ALBUMS';
 
 export const SHOW_NOTIFICATION = '@notification/SHOW_NOTIFICATION';
 export const HIDE_NOTIFICATION = '@notification/HIDE_NOTIFICATION';

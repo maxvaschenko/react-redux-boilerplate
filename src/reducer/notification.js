@@ -1,5 +1,4 @@
 import {createReducer} from "../utils";
-
 import * as types from "../type";
 
 const initialState = {
