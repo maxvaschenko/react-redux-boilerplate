@@ -5,10 +5,12 @@ import {loadState} from "../utils";
 const initialLikes = loadState();
 
 const initialState = {
-    data: null,
-    likedItems: [...initialLikes],
+    data: [],
+    likedItems: [],
     error: false
 };
+
+initialState.likedItems = initialLikes ? initialLikes : []
 
 export default createReducer(initialState, {
     [types.GET_ALBUM_LIST]: (state, payload) => {
