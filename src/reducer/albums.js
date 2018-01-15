@@ -10,7 +10,7 @@ const initialState = {
     error: false
 };
 
-initialState.likedItems = initialLikes ? initialLikes : []
+initialState.likedItems = initialLikes ? [...initialLikes] : []
 
 export default createReducer(initialState, {
     [types.GET_ALBUM_LIST]: (state, payload) => {
