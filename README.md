@@ -1,2 +1,5 @@
 # react-redux-boilerplate
---> yarn ---> npm run dev
+--> yarn 
+dev ---> npm run dev
+prod ---> npm run build
+clean ---> npm run 
