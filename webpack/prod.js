@@ -6,6 +6,7 @@ const CompressionPlugin = require("compression-webpack-plugin");
 
 
 module.exports = {
+    mode: "production",
     entry: {
         main: path.resolve(__dirname, '../src'),
     },
@@ -15,7 +16,16 @@ module.exports = {
     output: {
         filename: `[chunkhash].min.js`,
         path: path.resolve(__dirname, '../dist'),
-      },
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                default: false,
+                vendors: false,
+            },
+        }
+    },
     module: {
         rules: [
             {
@@ -89,31 +99,6 @@ module.exports = {
         ],
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            beautify: false,
-            comments: false,
-            compress: {
-                warnings: false,
-                screw_ie8: true,
-                conditionals: true,
-                unused: true,
-                comparisons: true,
-                sequences: true,
-                dead_code: true,
-                evaluate: true,
-                if_return: true,
-                join_vars: true,
-                booleans: true,
-                loops: true,
-                drop_console: true,
-                unsafe: true,
-            },
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ["vendors", "redux", "react", "polyfills"],
-            filename: `[chunkhash].min.js`,
-            minChunks: Infinity
-        }),
         new ExtractTextPlugin({
             filename: `[chunkhash].min.css`,
             allChunks: true,
